@@ -1,4 +1,4 @@
-package com.haur.presentation
+package com.haur.presentation.topposts
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,38 +6,25 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.haur.presentation.ui.theme.DavigetTheme
+import org.koin.android.ext.android.inject
 
 class TopPostsActivity : ComponentActivity() {
+
+    private val topPostsViewModel: TopPostsViewModel by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DavigetTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    TopPostsScreen(topPostsViewModel)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    DavigetTheme {
-        Greeting("Android")
     }
 }

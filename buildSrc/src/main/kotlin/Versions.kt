@@ -7,6 +7,6 @@ object Versions {
     const val material = "1.5.0"
     const val koin = "3.0.1"
     const val retrofit = "2.9.0"
-    const val coroutines = "1.3.7"
+    const val coroutines = "1.6.0"
     const val composeVersion = "1.0.1"
 }

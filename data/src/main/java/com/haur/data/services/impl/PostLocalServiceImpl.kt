@@ -3,7 +3,7 @@ package com.haur.data.services.impl
 import android.content.Context
 import android.content.SharedPreferences
 import com.haur.data.services.PostLocalService
-import com.haur.domain.commons.Resource
+import com.haur.domain.commons.Result
 
 class PostLocalServiceImpl(
     private val context: Context
@@ -22,24 +22,24 @@ class PostLocalServiceImpl(
         context.getSharedPreferences(REMOVED_POSTS_PREFERENCES, Context.MODE_PRIVATE)
     }
 
-    override fun checkPostAsRead(id: String): Resource<Boolean> {
+    override fun checkPostAsRead(id: String): Result<Boolean> {
         readPostSharedPreferences.edit().putBoolean(id, true).apply()
-        return Resource.Success(true)
+        return Result.Success(true)
     }
 
-    override fun dismissPost(id: String): Resource<Boolean> {
+    override fun dismissPost(id: String): Result<Boolean> {
         dismissPostSharedPreferences.edit().putBoolean(id, true).apply()
-        return Resource.Success(true)
+        return Result.Success(true)
     }
 
-    override fun isPostDismissed(id: String): Resource<Boolean> {
+    override fun isPostDismissed(id: String): Result<Boolean> {
         val isDismissed = dismissPostSharedPreferences.contains(id)
-        return Resource.Success(isDismissed)
+        return Result.Success(isDismissed)
     }
 
-    override fun isPostAlreadyRead(id: String): Resource<Boolean> {
+    override fun isPostAlreadyRead(id: String): Result<Boolean> {
         val isRead = readPostSharedPreferences.contains(id)
-        return Resource.Success(isRead)
+        return Result.Success(isRead)
     }
 
 

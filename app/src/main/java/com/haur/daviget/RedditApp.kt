@@ -3,6 +3,7 @@ package com.haur.daviget
 import android.app.Application
 import com.haur.data.di.dataModule
 import com.haur.domain.di.domainModule
+import com.haur.presentation.di.presentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -13,7 +14,7 @@ class RedditApp: Application() {
 
         startKoin {
             androidContext(this@RedditApp)
-            modules(domainModule, dataModule)
+            modules(domainModule, dataModule, presentationModule)
         }
     }
 }

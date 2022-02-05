@@ -45,6 +45,8 @@ android {
 
 dependencies {
 
+    implementation project(path: ":domain")
+
     implementation Deps.INSTANCE.coreKtx
     implementation Deps.INSTANCE.appCompat
     implementation Deps.INSTANCE.material
@@ -53,6 +55,9 @@ dependencies {
     implementation Deps.INSTANCE.composePreviewTooling
     implementation Deps.INSTANCE.lifeCycleRuntime
     implementation Deps.INSTANCE.composeActivity
+    implementation Deps.INSTANCE.coroutinesAndroid
+    implementation Deps.INSTANCE.koinAndroid
+    implementation Deps.INSTANCE.koin
 
     testImplementation TestDeps.INSTANCE.JUnit
     debugImplementation Deps.INSTANCE.composeUiTooling

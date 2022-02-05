@@ -15,6 +15,7 @@ object Deps {
 
     // Coroutines
     val coroutines by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}" }
+    val coroutinesAndroid by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}" }
 
     //Compose
     val composeUI by lazy { "androidx.compose.ui:ui:${Versions.composeVersion}" }
