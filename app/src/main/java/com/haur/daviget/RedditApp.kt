@@ -12,7 +12,6 @@ class RedditApp: Application() {
         super.onCreate()
 
         startKoin {
-            androidLogger()
             androidContext(this@RedditApp)
             modules(domainModule, dataModule)
         }

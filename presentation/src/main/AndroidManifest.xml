@@ -2,4 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.haur.presentation">
 
+    <application>
+        <activity
+            android:name=".TopPostsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_top_posts"
+            android:theme="@style/Theme.Daviget" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
 </manifest>
