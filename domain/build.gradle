@@ -1,6 +1,10 @@
 plugins {
     id 'java-library'
-    id 'org.jetbrains.kotlin.jvm'
+    id 'kotlin'
+}
+
+dependencies {
+    implementation Deps.INSTANCE.koin
 }
 
 java {

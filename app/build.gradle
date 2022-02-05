@@ -33,8 +33,13 @@ android {
 
 dependencies {
 
+    implementation project(path: ":domain")
+
     implementation Deps.INSTANCE.coreKtx
     implementation Deps.INSTANCE.appCompat
     implementation Deps.INSTANCE.material
+    implementation Deps.INSTANCE.koinAndroid
+    implementation Deps.INSTANCE.koin
+
     testImplementation TestDeps.INSTANCE.JUnit
 }
