@@ -31,7 +31,15 @@ android {
 
 dependencies {
 
+    implementation project(path: ":domain")
+
     implementation Deps.INSTANCE.coreKtx
     implementation Deps.INSTANCE.appCompat
+    implementation Deps.INSTANCE.retrofit
+    implementation Deps.INSTANCE.gsonConverter
+    implementation Deps.INSTANCE.koinAndroid
+    implementation Deps.INSTANCE.koin
+    implementation Deps.INSTANCE.coroutines
+
     testImplementation TestDeps.INSTANCE.JUnit
 }
