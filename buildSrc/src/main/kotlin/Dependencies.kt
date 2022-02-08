@@ -25,6 +25,7 @@ object Deps {
     val composeUiTooling by lazy { "androidx.compose.ui:ui-tooling:${Versions.composeVersion}" }
 
     val lifeCycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycleRuntime}" }
+    val coil by lazy { "io.coil-kt:coil-compose:${Versions.coil}" }
 }
 
 object TestDeps {

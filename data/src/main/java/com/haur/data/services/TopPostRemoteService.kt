@@ -7,7 +7,7 @@ import retrofit2.http.Query
 interface TopPostRemoteService {
     @GET("top/.json")
     suspend fun getPosts(
-        @Query("t") t: String = "all",
-        @Query("limit") limit: String = "10"
+        @Query("limit") limit: String = "10",
+        @Query("t") t: String = "year"
     ): PostsRequestResponse
 }

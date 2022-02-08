@@ -58,6 +58,7 @@ dependencies {
     implementation Deps.INSTANCE.coroutinesAndroid
     implementation Deps.INSTANCE.koinAndroid
     implementation Deps.INSTANCE.koin
+    implementation Deps.INSTANCE.coil
 
     testImplementation TestDeps.INSTANCE.JUnit
     debugImplementation Deps.INSTANCE.composeUiTooling
