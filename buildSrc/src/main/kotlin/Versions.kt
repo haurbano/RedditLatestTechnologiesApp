@@ -11,4 +11,6 @@ object Versions {
     const val coroutines = "1.6.0"
     const val composeVersion = "1.0.1"
     const val googleSwipeRefresh = "0.15.0"
+    const val paging = "3.1.0"
+    const val pagingCompose = "1.0.0-alpha14"
 }

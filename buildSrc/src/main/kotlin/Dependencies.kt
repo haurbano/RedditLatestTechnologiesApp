@@ -27,6 +27,10 @@ object Deps {
 
     val lifeCycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycleRuntime}" }
     val coil by lazy { "io.coil-kt:coil-compose:${Versions.coil}" }
+
+    // Paging
+    val paging by lazy { "androidx.paging:paging-runtime:${Versions.paging}" }
+    val pagingCOmpose by lazy { "androidx.paging:paging-compose:${Versions.pagingCompose}" }
 }
 
 object TestDeps {

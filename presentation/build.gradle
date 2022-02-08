@@ -47,6 +47,10 @@ dependencies {
 
     implementation project(path: ":domain")
 
+    // This is not right but I had to do this in order to use the Jetpack Compose Library and the
+    // Jetpack Paging library together. I could find a way to avoid this later. I blame Android XD
+    implementation project(path: ":data")
+
     implementation Deps.INSTANCE.coreKtx
     implementation Deps.INSTANCE.appCompat
     implementation Deps.INSTANCE.material
@@ -60,6 +64,8 @@ dependencies {
     implementation Deps.INSTANCE.koin
     implementation Deps.INSTANCE.coil
     implementation Deps.INSTANCE.googleSwipeRefresh
+    implementation Deps.INSTANCE.paging
+    implementation Deps.INSTANCE.pagingCOmpose
 
     testImplementation TestDeps.INSTANCE.JUnit
     debugImplementation Deps.INSTANCE.composeUiTooling

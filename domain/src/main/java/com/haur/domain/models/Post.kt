@@ -12,5 +12,6 @@ data class Post(
     val numberOfComments: Int,
     var isRead: Boolean,
     var images: List<String>,
-    var text: String?
+    var text: String?,
+    var after: String?
 ) : Serializable

@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -17,6 +16,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import coil.compose.rememberImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -27,6 +28,7 @@ import com.haur.presentation.topposts.util.createdDisplayTime
 @Composable
 fun TopPostsScreen(viewModel: TopPostsViewModel){
     val uiState by viewModel.uiState.collectAsState()
+    val posts = viewModel.postsFlow.collectAsLazyPagingItems()
 
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing = uiState.isRefreshing),
@@ -37,27 +39,25 @@ fun TopPostsScreen(viewModel: TopPostsViewModel){
             Modifier.padding(start = 8.dp, end = 8.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            uiState.posts.forEach { post ->
-                postItem(post, {})
+            items(posts) { post ->
+                post?.let { PostItem(post, {}) }
             }
         }
     }
 
 }
-
-fun LazyListScope.postItem(
+@Composable
+fun PostItem(
     post: Post,
     onThumbnailClick: () -> Unit
 ){
-    item { PostTitle(title = post.title) }
-    item { PostAuthor(author= post.authorName) }
-    item {
+    Column() {
+        PostTitle(title = post.title)
+        PostAuthor(author= post.authorName)
         if (post.thumbnail.isNotEmpty()){
             PostImage(url = post.thumbnail, onThumbnailClick)
         }
-    }
-    item { PostInfo(post) }
-    item {
+        PostInfo(post)
         Divider(
             modifier = Modifier.padding(start = 8.dp, top = 8.dp, bottom = 16.dp),
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.1f)

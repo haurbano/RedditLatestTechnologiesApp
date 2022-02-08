@@ -20,7 +20,8 @@ fun PostsRequestResponse.toPostList() : List<Post> {
             thumbnail = post.thumbnail,
             entryDate = parseDate(post.created),
             images = postImages.map { it.source.url },
-            text = children.data.author_flair_text
+            text = children.data.author_flair_text,
+            after = this.data.after
         )
 
         posts.add(newPost)

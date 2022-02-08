@@ -40,6 +40,8 @@ dependencies {
     implementation Deps.INSTANCE.koinAndroid
     implementation Deps.INSTANCE.koin
     implementation Deps.INSTANCE.coroutines
+    implementation Deps.INSTANCE.paging
+    implementation Deps.INSTANCE.pagingCOmpose
 
     testImplementation TestDeps.INSTANCE.JUnit
 }
