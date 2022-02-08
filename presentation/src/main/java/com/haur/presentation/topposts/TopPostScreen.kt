@@ -33,7 +33,10 @@ fun TopPostsScreen(viewModel: TopPostsViewModel){
         onRefresh = { viewModel.refresh() }
     ) {
 
-        LazyColumn(Modifier.padding(start = 8.dp, end = 8.dp)) {
+        LazyColumn(
+            Modifier.padding(start = 8.dp, end = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
             uiState.posts.forEach { post ->
                 postItem(post, {})
             }
@@ -46,8 +49,8 @@ fun LazyListScope.postItem(
     post: Post,
     onThumbnailClick: () -> Unit
 ){
-    item { PostAuthor(author= post.authorName) }
     item { PostTitle(title = post.title) }
+    item { PostAuthor(author= post.authorName) }
     item {
         if (post.thumbnail.isNotEmpty()){
             PostImage(url = post.thumbnail, onThumbnailClick)
@@ -94,7 +97,7 @@ fun PostAuthor(author: String) {
     Text(
         text = author,
         style = MaterialTheme.typography.subtitle2,
-        modifier = Modifier.padding(start = 10.dp),
+        modifier = Modifier.padding(top = 10.dp),
         color = MaterialTheme.colors.onSurface.copy(alpha = 0.4f)
     )
 }
