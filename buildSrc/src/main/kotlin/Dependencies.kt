@@ -23,6 +23,7 @@ object Deps {
     val composePreviewTooling by lazy { "androidx.compose.ui:ui-tooling-preview:${Versions.composeVersion}" }
     val composeActivity by lazy { "androidx.activity:activity-compose:${Versions.composeActivity}" }
     val composeUiTooling by lazy { "androidx.compose.ui:ui-tooling:${Versions.composeVersion}" }
+    val googleSwipeRefresh by lazy { "com.google.accompanist:accompanist-swiperefresh:${Versions.googleSwipeRefresh}" }
 
     val lifeCycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycleRuntime}" }
     val coil by lazy { "io.coil-kt:coil-compose:${Versions.coil}" }

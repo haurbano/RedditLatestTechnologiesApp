@@ -59,6 +59,7 @@ dependencies {
     implementation Deps.INSTANCE.koinAndroid
     implementation Deps.INSTANCE.koin
     implementation Deps.INSTANCE.coil
+    implementation Deps.INSTANCE.googleSwipeRefresh
 
     testImplementation TestDeps.INSTANCE.JUnit
     debugImplementation Deps.INSTANCE.composeUiTooling

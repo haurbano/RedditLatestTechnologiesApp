@@ -18,6 +18,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.haur.domain.models.Post
 import com.haur.presentation.R
 import com.haur.presentation.topposts.util.createdDisplayTime
@@ -26,11 +28,18 @@ import com.haur.presentation.topposts.util.createdDisplayTime
 fun TopPostsScreen(viewModel: TopPostsViewModel){
     val uiState by viewModel.uiState.collectAsState()
 
-    LazyColumn(Modifier.padding(start = 8.dp, end = 8.dp)) {
-        uiState.posts.forEach { post ->
-            postItem(post, {})
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(isRefreshing = uiState.isRefreshing),
+        onRefresh = { viewModel.refresh() }
+    ) {
+
+        LazyColumn(Modifier.padding(start = 8.dp, end = 8.dp)) {
+            uiState.posts.forEach { post ->
+                postItem(post, {})
+            }
         }
     }
+
 }
 
 fun LazyListScope.postItem(

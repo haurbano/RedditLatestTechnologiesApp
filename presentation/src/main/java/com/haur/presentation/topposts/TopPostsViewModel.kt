@@ -13,26 +13,43 @@ import kotlinx.coroutines.launch
 
 data class TopPostsUiState(
     val posts: List<Post> = emptyList(),
-    val isLoading: Boolean
+    val isLoading: Boolean,
+    val isRefreshing: Boolean = false
 )
 
 class TopPostsViewModel(
     private val getTopPostUseCase: GetTopPostUseCase
 ): ViewModel() {
 
+    private val _uiState = MutableStateFlow(TopPostsUiState(isLoading = true))
+    val uiState: StateFlow<TopPostsUiState> = _uiState.asStateFlow()
+
     init {
+        _uiState.update { it.copy(
+            posts = emptyList(),
+            isRefreshing = false,
+            isLoading = true
+        ) }
         fetchTopPosts()
     }
 
-    private val _uiState = MutableStateFlow(TopPostsUiState(isLoading = true))
-    val uiState: StateFlow<TopPostsUiState> = _uiState.asStateFlow()
+    fun refresh() {
+        _uiState.update { it.copy(
+            posts = emptyList(),
+            isRefreshing = true,
+            isLoading = false
+        ) }
+        fetchTopPosts()
+    }
+
 
     private fun fetchTopPosts() {
         viewModelScope.launch {
             val posts = getTopPostUseCase()
             _uiState.update { it.copy(
                 posts = posts.successOr(emptyList()),
-                isLoading = false
+                isLoading = false,
+                isRefreshing = false
             ) }
         }
     }
