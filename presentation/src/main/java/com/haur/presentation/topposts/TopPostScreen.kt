@@ -32,7 +32,8 @@ fun TopPostsScreen(viewModel: TopPostsViewModel){
 
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing = uiState.isRefreshing || uiState.isLoading),
-        onRefresh = { posts.refresh() }
+        onRefresh = { posts.refresh() },
+        modifier = Modifier.padding(top = 8.dp)
     ) {
         LazyColumn(
             Modifier.padding(start = 8.dp, end = 8.dp),
@@ -43,7 +44,9 @@ fun TopPostsScreen(viewModel: TopPostsViewModel){
                     AnimatedRemove(
                         shouldBeVisible= {viewModel.isDismissed(post.id)}
                     ) {
-                        PostItem(post, {}, { viewModel.dismissPost(it) })
+                        Card(elevation = 4.dp, modifier = Modifier.padding(4.dp)) {
+                            PostItem(post, {}, { viewModel.dismissPost(it) })
+                        }
                     }
                 }
             }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -22,57 +23,77 @@ fun PostItem(
     onThumbnailClick: () -> Unit,
     dismissPost: (String) -> Unit
 ){
-    Column() {
+    Column(modifier = Modifier.padding(8.dp)) {
         PostTitle(title = post.title)
-        PostAuthor(author= post.authorName)
+        Row(
+            modifier = Modifier.padding(top = 10.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            PostAuthor(author= post.authorName)
+            Spacer(modifier = Modifier.size(16.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.ic_baseline_access_time_24),
+                contentDescription = null
+            )
+            Text(
+                text = post.createdDisplayTime(),
+                modifier = Modifier.padding(start = 4.dp),
+                style = MaterialTheme.typography.subtitle2,
+                color = MaterialTheme.colors.onSurface.copy(alpha = 0.4f)
+            )
+        }
         if (post.thumbnail.isNotEmpty()){
             PostImage(url = post.thumbnail, onThumbnailClick)
         }
         PostInfo(post, dismissPost)
-        Divider(
-            modifier = Modifier.padding(start = 8.dp, top = 8.dp, bottom = 16.dp),
-            color = MaterialTheme.colors.onSurface.copy(alpha = 0.1f)
-        )
     }
 }
 
 @Composable
 fun PostInfo(post: Post, dismissPost: (String) -> Unit) {
-    Row(modifier = Modifier.padding(top= 8.dp)) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_baseline_comment_24),
-            contentDescription = null
-        )
-
-        Text(
-            text = post.numberOfComments.toString(),
-            modifier = Modifier.padding(start = 4.dp),
-        )
-
+    Row(
+        modifier = Modifier.padding(top= 8.dp).fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        CommentsInfo(post)
         Spacer(modifier = Modifier.width(16.dp))
+        DismissIcon(dismissPost, post)
 
-        Icon(
-            painter = painterResource(id = R.drawable.ic_baseline_access_time_24),
-            contentDescription = null
-        )
+    }
+}
 
-        Text(
-            text = post.createdDisplayTime(),
-            modifier = Modifier.padding(start = 4.dp),
-        )
+@Composable
+private fun CommentsInfo(post: Post) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_baseline_comment_24),
+        contentDescription = null
+    )
 
-        Spacer(modifier = Modifier.width(16.dp))
+    Text(
+        text = post.numberOfComments.toString(),
+        modifier = Modifier.padding(start = 4.dp),
+    )
+}
 
-        IconButton(
-            onClick = { dismissPost(post.id) },
-        ){
+@Composable
+fun DismissIcon(dismissPost: (String) -> Unit, post: Post) {
+    IconButton(
+        onClick = { dismissPost(post.id) },
+        modifier = Modifier.fillMaxWidth()
+    ){
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
             Icon(
                 painter= painterResource(id = R.drawable.ic_baseline_block_24),
                 tint = Color.Red,
                 contentDescription = null
             )
-        }
 
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = "Dismiss", modifier = Modifier.fillMaxWidth())
+        }
     }
 }
 
@@ -81,7 +102,6 @@ fun PostAuthor(author: String) {
     Text(
         text = author,
         style = MaterialTheme.typography.subtitle2,
-        modifier = Modifier.padding(top = 10.dp),
         color = MaterialTheme.colors.onSurface.copy(alpha = 0.4f)
     )
 }
@@ -100,7 +120,7 @@ fun PostImage(url: String, onClickImage: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = 60.dp)
-            .padding(top = 8.dp)
+            .padding(4.dp)
             .clip(shape = MaterialTheme.shapes.medium)
             .clickable { onClickImage() }
     )
