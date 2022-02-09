@@ -32,7 +32,7 @@ fun TopPostsScreen(viewModel: TopPostsViewModel){
 
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing = uiState.isRefreshing),
-        onRefresh = { viewModel.refresh() }
+        onRefresh = { posts.refresh() }
     ) {
 
         LazyColumn(
