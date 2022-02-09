@@ -19,8 +19,8 @@ class PostPagingRemoteDataSource(
     override suspend fun load(params: LoadParams<String>): LoadResult<String, Post> {
         val response = topPostRemoteService.getPosts(afterKey = params.key ?: "")
         val posts = response.toPostList()
+            .map { it.copy(isRead = repository.isPostAlreadyRead(it.id)) }
             .filter { !repository.isPostDismissed(it.id) }
-            .filter { !repository.isPostAlreadyRead(it.id) }
 
         return LoadResult.Page(
             prevKey = params.key,

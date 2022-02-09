@@ -3,13 +3,17 @@ package com.haur.presentation.topposts
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.haur.presentation.ui.theme.DavigetTheme
 import org.koin.android.ext.android.inject
 
+@ExperimentalAnimationApi
+@ExperimentalMaterialApi
 class TopPostsActivity : ComponentActivity() {
 
     private val topPostsViewModel: TopPostsViewModel by inject()

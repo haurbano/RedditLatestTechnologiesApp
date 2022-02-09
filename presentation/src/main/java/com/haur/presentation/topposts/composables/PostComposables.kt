@@ -1,7 +1,6 @@
 package com.haur.presentation.topposts.composables
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -20,11 +19,11 @@ import com.haur.presentation.topposts.util.createdDisplayTime
 @Composable
 fun PostItem(
     post: Post,
-    onThumbnailClick: () -> Unit,
-    dismissPost: (String) -> Unit
+    dismissPost: (String) -> Unit,
+    postIsRead: () -> Boolean
 ){
     Column(modifier = Modifier.padding(8.dp)) {
-        PostTitle(title = post.title)
+        PostTitle(title = post.title, postIsRead, post)
         Row(
             modifier = Modifier.padding(top = 10.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -43,7 +42,7 @@ fun PostItem(
             )
         }
         if (post.thumbnail.isNotEmpty()){
-            PostImage(url = post.thumbnail, onThumbnailClick)
+            PostImage(url = post.thumbnail)
         }
         PostInfo(post, dismissPost)
     }
@@ -52,7 +51,9 @@ fun PostItem(
 @Composable
 fun PostInfo(post: Post, dismissPost: (String) -> Unit) {
     Row(
-        modifier = Modifier.padding(top= 8.dp).fillMaxWidth(),
+        modifier = Modifier
+            .padding(top = 8.dp)
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         CommentsInfo(post)
@@ -65,6 +66,7 @@ fun PostInfo(post: Post, dismissPost: (String) -> Unit) {
 @Composable
 private fun CommentsInfo(post: Post) {
     Icon(
+        modifier= Modifier.padding(start= 4.dp),
         painter = painterResource(id = R.drawable.ic_baseline_comment_24),
         contentDescription = null
     )
@@ -107,7 +109,7 @@ fun PostAuthor(author: String) {
 }
 
 @Composable
-fun PostImage(url: String, onClickImage: () -> Unit) {
+fun PostImage(url: String) {
     Image(
         painter = rememberImagePainter(
             data = url,
@@ -122,15 +124,23 @@ fun PostImage(url: String, onClickImage: () -> Unit) {
             .heightIn(min = 60.dp)
             .padding(4.dp)
             .clip(shape = MaterialTheme.shapes.medium)
-            .clickable { onClickImage() }
     )
 }
 
 @Composable
-fun PostTitle(title: String){
-    Text(
-        text = title,
-        style = MaterialTheme.typography.subtitle1,
-        modifier = Modifier.padding(top = 8.dp)
-    )
+fun PostTitle(title: String, isRead: () -> Boolean, post: Post){
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        if (!isRead() && !post.isRead) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_baseline_fiber_new_24),
+                contentDescription = null
+            )
+        }
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(
+            text = title,
+            style = MaterialTheme.typography.subtitle1,
+            modifier = Modifier.padding(top = 8.dp)
+        )
+    }
 }

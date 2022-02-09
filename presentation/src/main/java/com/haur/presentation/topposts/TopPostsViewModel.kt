@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.haur.data.di.PagingSourceFactory
 import com.haur.domain.models.Post
+import com.haur.domain.usecases.CheckPostAsReadUseCase
 import com.haur.domain.usecases.DismissPostUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -18,6 +19,7 @@ data class TopPostsUiState(
 class TopPostsViewModel(
     private val dismissPostUseCase: DismissPostUseCase,
     private val postsPagingSourceFactory: PagingSourceFactory,
+    private val readUseCase: CheckPostAsReadUseCase
 ): ViewModel() {
 
     private val _uiState = MutableStateFlow(TopPostsUiState(isLoading = true))
@@ -28,6 +30,7 @@ class TopPostsViewModel(
     }.flow.cachedIn(viewModelScope)
 
     private val dismissedPosts = mutableStateListOf<String>()
+    private val readPosts = mutableStateListOf<String>()
 
     init {
         _uiState.update { it.copy(
@@ -53,5 +56,13 @@ class TopPostsViewModel(
         }
     }
 
+    val markPostAsRead: (String) -> Unit = { postId ->
+        viewModelScope.launch {
+            readUseCase.invoke(postId)
+            readPosts.add(postId)
+        }
+    }
+
     fun isDismissed(id: String): Boolean = dismissedPosts.contains(id)
+    fun isRead(id: String) = readPosts.contains(id)
 }

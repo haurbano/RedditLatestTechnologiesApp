@@ -2,28 +2,19 @@ package com.haur.presentation.topposts
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import coil.compose.rememberImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import com.haur.domain.models.Post
-import com.haur.presentation.R
 import com.haur.presentation.topposts.composables.PostItem
-import com.haur.presentation.topposts.util.createdDisplayTime
 
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
 fun TopPostsScreen(viewModel: TopPostsViewModel){
@@ -44,8 +35,16 @@ fun TopPostsScreen(viewModel: TopPostsViewModel){
                     AnimatedRemove(
                         shouldBeVisible= {viewModel.isDismissed(post.id)}
                     ) {
-                        Card(elevation = 4.dp, modifier = Modifier.padding(4.dp)) {
-                            PostItem(post, {}, { viewModel.dismissPost(it) })
+                        Card(
+                            elevation = 4.dp,
+                            modifier = Modifier.padding(4.dp),
+                            onClick = { viewModel.markPostAsRead(post.id) }
+                        ) {
+                            PostItem(
+                                post = post,
+                                dismissPost = { viewModel.dismissPost(it) },
+                                postIsRead = { viewModel.isRead(it.id)}
+                            )
                         }
                     }
                 }
