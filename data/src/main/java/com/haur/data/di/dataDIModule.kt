@@ -13,6 +13,6 @@ val dataModule = module {
     single { RetrofitClient }
     single { get<RetrofitClient>().create(TopPostRemoteService::class.java) }
     single <PostLocalService>{ PostLocalServiceImpl(get()) }
-    factory { PagingSourceFactory(get()) }
+    factory { PagingSourceFactory(get(), get()) }
     factory<PostsRepository> { PostsRepositoryImpl(get(), get()) }
 }

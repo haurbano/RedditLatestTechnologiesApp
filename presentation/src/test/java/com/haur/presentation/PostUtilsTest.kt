@@ -15,7 +15,8 @@ class PostUtilsTest {
         numberOfComments = 20,
         isRead = false,
         images = emptyList(),
-        text = null
+        text = null,
+        after = ""
     )
 
     @Test

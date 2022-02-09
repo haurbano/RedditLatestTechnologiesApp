@@ -32,14 +32,12 @@ class PostLocalServiceImpl(
         return Result.Success(true)
     }
 
-    override fun isPostDismissed(id: String): Result<Boolean> {
-        val isDismissed = dismissPostSharedPreferences.contains(id)
-        return Result.Success(isDismissed)
+    override fun isPostDismissed(id: String): Boolean {
+        return dismissPostSharedPreferences.contains(id)
     }
 
-    override fun isPostAlreadyRead(id: String): Result<Boolean> {
-        val isRead = readPostSharedPreferences.contains(id)
-        return Result.Success(isRead)
+    override fun isPostAlreadyRead(id: String): Boolean {
+        return readPostSharedPreferences.contains(id)
     }
 
 
