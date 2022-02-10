@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".topposts.TopPostsActivity"
+            android:name=".home.HomeActivity"
             android:exported="true"
             android:label="@string/title_activity_top_posts"
             android:theme="@style/Theme.Daviget" >

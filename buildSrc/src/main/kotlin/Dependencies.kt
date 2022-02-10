@@ -31,6 +31,9 @@ object Deps {
     // Paging
     val paging by lazy { "androidx.paging:paging-runtime:${Versions.paging}" }
     val pagingCOmpose by lazy { "androidx.paging:paging-compose:${Versions.pagingCompose}" }
+
+    // Navigation
+    val navigationCompose by lazy {"androidx.navigation:navigation-compose:${Versions.navigationCompose}"}
 }
 
 object TestDeps {

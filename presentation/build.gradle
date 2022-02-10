@@ -66,6 +66,7 @@ dependencies {
     implementation Deps.INSTANCE.googleSwipeRefresh
     implementation Deps.INSTANCE.paging
     implementation Deps.INSTANCE.pagingCOmpose
+    implementation Deps.INSTANCE.navigationCompose
 
     testImplementation TestDeps.INSTANCE.JUnit
     debugImplementation Deps.INSTANCE.composeUiTooling

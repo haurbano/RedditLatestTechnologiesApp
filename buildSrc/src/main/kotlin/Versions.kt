@@ -1,4 +1,5 @@
 object Versions {
+    const val navigationCompose = "2.5.0-alpha01"
     const val coil = "1.4.0"
     const val composeActivity = "1.3.1"
     const val lifeCycleRuntime = "2.3.1"
