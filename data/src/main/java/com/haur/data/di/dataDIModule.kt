@@ -1,8 +1,8 @@
 package com.haur.data.di
 
 import com.haur.data.repositories.PostsRepositoryImpl
+import com.haur.data.responses.PostResponseMapper
 import com.haur.data.retrofit.RetrofitClient
-import com.haur.data.services.PostPagingRemoteDataSource
 import com.haur.data.services.PostLocalService
 import com.haur.data.services.TopPostRemoteService
 import com.haur.data.services.impl.PostLocalServiceImpl
@@ -13,6 +13,7 @@ val dataModule = module {
     single { RetrofitClient }
     single { get<RetrofitClient>().create(TopPostRemoteService::class.java) }
     single <PostLocalService>{ PostLocalServiceImpl(get()) }
-    factory { PagingSourceFactory(get(), get()) }
-    factory<PostsRepository> { PostsRepositoryImpl(get(), get()) }
+    factory { PostResponseMapper() }
+    factory { PagingSourceFactory(get(), get(), get()) }
+    factory<PostsRepository> { PostsRepositoryImpl(get()) }
 }

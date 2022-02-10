@@ -1,14 +1,12 @@
 package com.haur.data.repositories
 
 import com.haur.data.services.PostLocalService
-import com.haur.data.services.TopPostRemoteService
 import com.haur.domain.commons.Result
 import com.haur.domain.repositories.PostsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class PostsRepositoryImpl(
-    private val postRemoteService: TopPostRemoteService,
     private val postLocalService: PostLocalService
 ): PostsRepository {
 

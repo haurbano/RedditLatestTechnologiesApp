@@ -44,4 +44,6 @@ dependencies {
     implementation Deps.INSTANCE.pagingCOmpose
 
     testImplementation TestDeps.INSTANCE.JUnit
+    testImplementation "io.mockk:mockk:1.12.2"
+    testImplementation "io.mockk:mockk-agent-jvm:1.12.2"
 }

@@ -38,4 +38,5 @@ object Deps {
 
 object TestDeps {
     val jUnit by lazy { "junit:junit:${Versions.jUnit}" }
+    val mockito by lazy { "org.mockito:mockito-core:${Versions.mockito3Version}" }
 }

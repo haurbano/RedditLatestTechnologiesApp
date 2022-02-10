@@ -1,4 +1,5 @@
 object Versions {
+    const val mockito3Version = "3.3.3"
     const val navigationCompose = "2.5.0-alpha01"
     const val coil = "1.4.0"
     const val composeActivity = "1.3.1"
