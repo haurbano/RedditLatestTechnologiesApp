@@ -34,6 +34,9 @@ object Deps {
 
     // Navigation
     val navigationCompose by lazy {"androidx.navigation:navigation-compose:${Versions.navigationCompose}"}
+
+    // Code Quiality
+    val ktlint by lazy { "com.pinterest:ktlint:${Versions.ktLintVersion}" }
 }
 
 object TestDeps {

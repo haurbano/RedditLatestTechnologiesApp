@@ -23,7 +23,7 @@ Reddit application example with the latest Android Libraries
 - **BuildSrc Strategy**: [Blog](https://proandroiddev.com/gradle-dependency-management-with-kotlin-94eed4df9a28)
 
 ### UI Library
-I used Jetpack Compose, it was my frist project with this labrary and it's stable yet :(
+I used Jetpack Compose, it was my frist project with this labrary and it's not stable yet :(
 
 ## Architecture
 - Using **Clean Architechture** for the whole application and using **MVVM** for the presentation layer.
